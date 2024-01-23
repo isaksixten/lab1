@@ -41,7 +41,9 @@ public class Car implements Moveable{
     public void setColor(Color clr){
 	    color = clr;
     }
-
+    public String getmodelName(){
+        return modelName;
+    }
     public void startEngine(){
 	    currentSpeed = 0.1;
     }
@@ -71,6 +73,7 @@ public class Car implements Moveable{
     public void brake(double amount){
         decrementSpeed(amount);
     }
+
 
     public void move(){ // public???
         x_pos = x_pos + Math.cos(direction * Math.PI / 180) * getCurrentSpeed();
