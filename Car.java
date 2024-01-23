@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.lang.Math;
+import java.security.InvalidParameterException;
 
 public class Car implements Moveable{
 
@@ -15,7 +16,10 @@ public class Car implements Moveable{
     public Car(int nrDoors, Color color, double enginePower, String modelName){
         this.nrDoors = nrDoors;
         this.color = color;
+        if (enginePower >= 0){
         this.enginePower = enginePower;
+        } else{ throw new InvalidParameterException("must have enginepower larger than 0");
+        }
         this.modelName = modelName;
         this.x_pos = 0;
         this.y_pos = 0;
@@ -57,21 +61,29 @@ public class Car implements Moveable{
     }
 
     protected void incrementSpeed(double amount){
-        currentSpeed = getCurrentSpeed() + speedFactor() * amount;
+        currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount,getEnginePower());
     }
 
     protected void decrementSpeed(double amount){
-        currentSpeed = getCurrentSpeed() - speedFactor() * amount;
+        currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount,0);
     }
     
     // TODO fix this method according to lab pm
     public void gas(double amount){
-        incrementSpeed(amount);
+        if(amount > 0 && amount < 1){
+            incrementSpeed(amount);
+        } else{
+            throw new InvalidParameterException("invalid amount");
+        }
     }
 
     // TODO fix this method according to lab pm
     public void brake(double amount){
+        if(amount > 0 && amount < 1){
         decrementSpeed(amount);
+        } else{
+            throw new InvalidParameterException("invalid amount");
+        }
     }
 
 
