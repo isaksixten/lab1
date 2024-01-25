@@ -93,6 +93,7 @@ public class Saab95Test{
         TestSaab.turnLeft(30);
         TestSaab.turnRight(30);
         double[] startpos = TestSaab.getCurrentPos();
+        TestSaab.startEngine();
         TestSaab.gas(1);
         TestSaab.move();
         double[] endpos = TestSaab.getCurrentPos();
