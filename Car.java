@@ -1,8 +1,7 @@
 import java.awt.*;
 import java.lang.Math;
-import java.security.InvalidParameterException;
 
-public class Car implements Moveable{
+abstract class Car implements Moveable{
 
     private int nrDoors; // Number of doors on the car
     private double enginePower; // Engine power of the car
@@ -16,10 +15,7 @@ public class Car implements Moveable{
     public Car(int nrDoors, Color color, double enginePower, String modelName){
         this.nrDoors = nrDoors;
         this.color = color;
-        if (enginePower >= 0){
-        this.enginePower = enginePower;
-        } else{ throw new InvalidParameterException("must have enginepower larger than 0");
-        }
+        setEnginePower(enginePower);
         this.modelName = modelName;
         this.x_pos = 0;
         this.y_pos = 0;
@@ -33,15 +29,23 @@ public class Car implements Moveable{
     public double getEnginePower(){
         return enginePower;
     }
-
     public double getCurrentSpeed(){
         return currentSpeed;
     }
-
     public Color getColor(){
         return color;
     }
-
+    public double[] getCurrentPos() { // Tillagd för test av move.
+        double[] pos = {x_pos, y_pos};
+        return pos;
+    }
+    public void setEnginePower(double amount){
+        if (amount >= 0){
+	        enginePower = amount;
+        } else {
+            throw new IllegalArgumentException("Enginepower needs to be >= 0");
+        }
+    }
     public void setColor(Color clr){
 	    color = clr;
     }
@@ -51,14 +55,11 @@ public class Car implements Moveable{
     public void startEngine(){
 	    currentSpeed = 0.1;
     }
-
     public void stopEngine(){
 	    currentSpeed = 0;
     }
 
-    protected double speedFactor(){
-        return enginePower * 0.01;
-    }
+    abstract protected double speedFactor();
 
     protected void incrementSpeed(double amount){
         currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount,getEnginePower());
@@ -68,26 +69,23 @@ public class Car implements Moveable{
         currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount,0);
     }
     
-    // TODO fix this method according to lab pm
     public void gas(double amount){
-        if(amount > 0 && amount < 1){
+        if(amount >= 0 && amount <= 1){
             incrementSpeed(amount);
-        } else{
-            throw new InvalidParameterException("invalid amount");
+        } else {
+            throw new IllegalArgumentException("invalid amount");
         }
     }
 
-    // TODO fix this method according to lab pm
     public void brake(double amount){
-        if(amount > 0 && amount < 1){
+        if(amount >= 0 && amount <= 1){
         decrementSpeed(amount);
-        } else{
-            throw new InvalidParameterException("invalid amount");
+        } else {
+            throw new IllegalArgumentException("invalid amount");
         }
     }
 
-
-    public void move(){ // public???
+    public void move(){ 
         x_pos = x_pos + Math.cos(direction * Math.PI / 180) * getCurrentSpeed();
         y_pos = y_pos + Math.sin(direction * Math.PI / 180) * getCurrentSpeed();
 

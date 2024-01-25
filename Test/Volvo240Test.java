@@ -6,7 +6,7 @@ import java.awt.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class Volvo240Test {
+public class Volvo240Test { // The majority of the Car class is tested in Saab95Test.java. Tests in this file test specific attributes of Volvo240.
     private Volvo240 TestVolvo;
     @BeforeEach
     public void setupVolvo(){
@@ -29,22 +29,10 @@ public class Volvo240Test {
     public void volvomodelnametest() {
         assertEquals("Volvo240", TestVolvo.getmodelName());
     }
-
     @Test
     public void volvopeedfactor() {
         assertEquals(1.25,TestVolvo.speedFactor());
     }
-    @Test
-    public void volvoincrementspeed() {
-        TestVolvo.incrementSpeed(100);
-        assertEquals(100, TestVolvo.getCurrentSpeed());
-    }
-    @Test
-    public void volvodecrementspeed() {
-        TestVolvo.decrementSpeed(100);
-        assertEquals(0, TestVolvo.getCurrentSpeed());
-    }
-
 }
 
 
