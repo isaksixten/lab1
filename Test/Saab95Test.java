@@ -52,16 +52,5 @@ public class Saab95Test{
         TestSaab.setTurboOff();
         assertEquals(1.25,TestSaab.speedFactor());
     }
-    // @Test
-    // public void saabincrementspeed() {
-    //     TestSaab.incrementSpeed(100);
-    //     assertEquals(125,TestSaab.getCurrentSpeed());
-    // }
-    // @Test
-    // public void saabdecrementspeed() {
-    //     TestSaab.decrementSpeed(100);
-    //     assertEquals(0,TestSaab.getCurrentSpeed());
-    // }
-    // @Test
 }
 
