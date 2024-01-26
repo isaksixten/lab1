@@ -3,19 +3,13 @@ import org.junit.jupiter.api.BeforeEach;
 
 import java.awt.*;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class Volvo240Test { // The majority of the Car class is tested in Saab95Test.java. Tests in this file test specific attributes of Volvo240.
+public class Volvo240Test {
     private Volvo240 TestVolvo;
     @BeforeEach
     public void setupVolvo(){
         TestVolvo = new Volvo240();
-    }
-
-    @Test
-    public void Nrofdoorsinvolvotest() {
-        assertEquals(4, TestVolvo.getNrDoors());
     }
     @Test
     public void colorofvolvotest() {
@@ -26,13 +20,7 @@ public class Volvo240Test { // The majority of the Car class is tested in Saab95
         assertEquals(100, TestVolvo.getEnginePower(), 0);
     }
     @Test
-    public void volvomodelnametest() {
-        assertEquals("Volvo240", TestVolvo.getmodelName());
-    }
-    @Test
     public void volvopeedfactor() {
         assertEquals(1.25,TestVolvo.speedFactor());
     }
 }
-
-

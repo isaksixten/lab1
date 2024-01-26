@@ -17,20 +17,12 @@ public class Saab95Test{
         assertFalse(TestSaab.statusTurboOn());
     }
     @Test
-    public void Nrofdoorsinsaabtest() {
-        assertEquals(2, TestSaab.getNrDoors());
-    }
-    @Test
     public void colorofsaabtest() {
         assertEquals(Color.red, TestSaab.getColor());
     }
     @Test
     public void saabenginepowertest() {
         assertEquals(125, TestSaab.getEnginePower(), 0);
-    }
-    @Test
-    public void saabmodelnametest() {
-        assertEquals("Saab95", TestSaab.getmodelName());
     }
     @Test
     public void setTurboOntest() {

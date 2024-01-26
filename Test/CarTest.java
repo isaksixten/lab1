@@ -13,6 +13,14 @@ public class CarTest {
         TestSaab = new Saab95();
     }
     @Test
+    public void modelnametest() {
+        assertEquals("Saab95", TestSaab.getmodelName());
+    }
+    @Test
+    public void Nrofdoorsinmodeltest() {
+        assertEquals(2, TestSaab.getNrDoors());
+    }
+    @Test
     public void colorswitchtest() {
         TestSaab.setColor(Color.blue);
         assertEquals(Color.blue, TestSaab.getColor());
