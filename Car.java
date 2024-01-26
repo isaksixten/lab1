@@ -11,6 +11,7 @@ abstract class Car implements Moveable{
     private double x_pos; // Coordinate Position x
     private double y_pos; // Coordinate Position y
     private double direction; // anglee in degrees, 0 is to the right.
+    private final int turndegrees = 30; // Constant number of degrees for a turn.
     
     public Car(int nrDoors, Color color, double enginePower, String modelName){
         this.nrDoors = nrDoors;
@@ -35,9 +36,12 @@ abstract class Car implements Moveable{
     public Color getColor(){
         return color;
     }
-    public double[] getCurrentPos() { // Tillagd för test av move.
+    public double[] getCurrentPos() { // Added for test of move().
         double[] pos = {x_pos, y_pos};
         return pos;
+    }
+    public double getDirection() { // Added for test of turn()
+        return direction;
     }
     public void setEnginePower(double amount){
         if (amount >= 0){
@@ -61,11 +65,11 @@ abstract class Car implements Moveable{
 
     abstract protected double speedFactor();
 
-    protected void incrementSpeed(double amount){
+    private void incrementSpeed(double amount){
         currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount,getEnginePower());
     }
 
-    protected void decrementSpeed(double amount){
+    private void decrementSpeed(double amount){
         currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount,0);
     }
     
@@ -91,11 +95,11 @@ abstract class Car implements Moveable{
 
     }
 
-    public void turnLeft(double amount){
-        direction = direction + amount;
+    public void turnLeft(){
+        direction = direction + turndegrees;
     }
 
-    public void turnRight(double amount){
-        direction = direction - amount;
+    public void turnRight(){
+        direction = direction - turndegrees;
     }
 }
