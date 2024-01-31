@@ -46,6 +46,9 @@ abstract class Vehicle implements Moveable{
     public double getDirection() { // Added for test of turn()
         return direction;
     }
+    protected void setDirection(double angle) {
+        direction = angle;
+    }
     public void setEnginePower(double amount){
         if (amount >= 0){
 	        enginePower = amount;
@@ -99,7 +102,6 @@ abstract class Vehicle implements Moveable{
     public void move(){ 
         x_pos = x_pos + Math.cos(direction * Math.PI / 180) * getCurrentSpeed();
         y_pos = y_pos + Math.sin(direction * Math.PI / 180) * getCurrentSpeed();
-
     }
 
     public void turnLeft(){

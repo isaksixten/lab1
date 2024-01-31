@@ -1,11 +1,14 @@
 import java.awt.*;
 import java.lang.Math;
+import java.util.*;
 import java.util.Stack;
 
-public class CarTransport extends Truck {
+public class CarTransport extends Vehicle {
 
     private int maxLoadNum;
+    private boolean rampDown;
     private Stack<Car> loadedVehicles = new Stack<Car>();
+    Iterator<Car> CarIterator = loadedVehicles.iterator();
 
     public CarTransport(int nrDoors, Color color, double enginePower, String modelName, int maxLoadNum) {
         super(nrDoors, color, enginePower, modelName);
@@ -13,13 +16,13 @@ public class CarTransport extends Truck {
         this.maxLoadNum = maxLoadNum;
     }
 
-    @Override public void raisePlatform() {
+    public void raiseRamp() {
         if (getCurrentSpeed() == 0){
             rampDown = false;
         }
     }
 
-    @Override public void lowerPlatform() {
+    public void lowerRamp() {
         if (getCurrentSpeed() == 0){
             rampDown = true;
         }
@@ -50,8 +53,23 @@ public class CarTransport extends Truck {
         }
     }
 
+    @Override public void move(){ 
+        setCurrentPos(getCurrentPos()[0] + Math.cos(getDirection() * Math.PI / 180) * getCurrentSpeed(), getCurrentPos()[1] + Math.sin(getDirection() * Math.PI / 180) * getCurrentSpeed());
+        while (CarIterator.hasNext()) { //Move all cars to the position of the car transport, and change their heading to match the car transport.
+            Car x = CarIterator.next();
+            x.setDirection(getDirection());
+            x.setCurrentPos(getCurrentPos()[0], getCurrentPos()[1]);
+        }
+    }
+
     protected double speedFactor() {
-        double factor = 0.01 / loadedVehicles.size(); //this is how it works in real life
+        double factor = 0.01 / loadedVehicles.size(); //Speedfactor impacted by total weight
         return getEnginePower() * factor; 
+    }
+
+    public void startEngine(){
+        if (rampDown) {
+            currentSpeed = 0.1;
+        }
     }
 }

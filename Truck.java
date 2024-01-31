@@ -3,7 +3,6 @@ import java.awt.*;
 abstract class Truck extends Vehicle {
 
     private double platformDegree;
-    protected boolean rampDown;
     private double maxPlatformDegree;
     private final double AngleTick = 10;
 
@@ -32,7 +31,7 @@ abstract class Truck extends Vehicle {
     }
 
     public void startEngine(){
-        if (rampDown == false) {
+        if (getPlatformDegree() == 0) {
             currentSpeed = 0.1;
         }
     }
