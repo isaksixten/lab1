@@ -8,16 +8,26 @@ public abstract class CarTransport extends Vehicle implements Loadable<Car>{
     private boolean rampDown;
     private Deque<Car> loadedVehicles = new LinkedList<Car>();
     private Loader<Car> loader = new Loader<Car>(this);
-    Iterator<Car> CarIterator = loadedVehicles.iterator();
+    private double[] sizeLimits = {0, 0};
 
-    public CarTransport(int nrDoors, Color color, double enginePower, String modelName, int maxLoadNum) {
+    public CarTransport(int nrDoors, Color color, double enginePower, String modelName, int maxLoadNum, double lengthLimit, double widthLimit) {
         super(nrDoors, color, enginePower, modelName);
+        setSizeLimits(lengthLimit, widthLimit);
         rampDown = true;
         this.maxLoadNum = maxLoadNum;
     }
     
     public Deque<Car> getCurrentLoad() {
         return loadedVehicles;
+    }
+
+    public double[] getSizeLimits() {
+        return sizeLimits;
+    }
+
+    public void setSizeLimits(double length, double width) {
+        sizeLimits[0] = length;
+        sizeLimits[1] = width;
     }
 
     public int getMaxLoad() {
@@ -37,7 +47,7 @@ public abstract class CarTransport extends Vehicle implements Loadable<Car>{
     }
 
     public void load(Car car) {
-        if (rampDown) {
+        if (rampDown && car.getSize()[0] < sizeLimits[0] && car.getSize()[1] < sizeLimits[1]) {
             loader.load(car);
         }
     }
@@ -51,8 +61,7 @@ public abstract class CarTransport extends Vehicle implements Loadable<Car>{
 
     @Override public void move(){ 
         setCurrentPos(getCurrentPos()[0] + Math.cos(getDirection() * Math.PI / 180) * getCurrentSpeed(), getCurrentPos()[1] + Math.sin(getDirection() * Math.PI / 180) * getCurrentSpeed());
-        while (CarIterator.hasNext()) { //Move all cars to the position of the car transport, and change their heading to match the car transport.
-            Car x = CarIterator.next();
+        for (Car x : loadedVehicles) { //Move all cars to the position of the car transport, and change their heading to match the car transport.
             x.setDirection(getDirection());
             x.setCurrentPos(getCurrentPos()[0], getCurrentPos()[1]);
         }

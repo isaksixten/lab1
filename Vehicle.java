@@ -9,6 +9,7 @@ abstract class Vehicle extends ObjectWithPosition implements Moveable{
     private Color color; // Color of the car
     private String modelName; // The car model name
     private double direction; // anglee in degrees, 0 is to the right.
+    private double[] dimensions = {0, 0};
     private final int turndegrees = 30; // Constant number of degrees for a turn.
     
     public Vehicle(int nrDoors, Color color, double enginePower, String modelName){
@@ -50,6 +51,13 @@ abstract class Vehicle extends ObjectWithPosition implements Moveable{
     public void setColor(Color clr){
 	    color = clr;
     }
+    public double[] getSize() {
+        return dimensions;
+    }
+    protected void setSize(double length, double width) {
+        dimensions[0] = length;
+        dimensions[1] = width;
+    }
     public String getmodelName(){
         return modelName;
     }
@@ -75,10 +83,14 @@ abstract class Vehicle extends ObjectWithPosition implements Moveable{
     }
     
     public void gas(double amount){
-        if(amount >= 0 && amount <= 1 && isEngineOn()){
-            incrementSpeed(amount);
+        if (isEngineOn()) {
+            if(amount >= 0 && amount <= 1){
+                incrementSpeed(amount);
+            } else {
+                throw new IllegalArgumentException("invalid amount");
+            }
         } else {
-            throw new IllegalArgumentException("invalid amount");
+            throw new IllegalStateException("Engine needs to be turned on!");
         }
     }
 

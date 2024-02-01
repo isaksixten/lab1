@@ -4,12 +4,12 @@ public class Loader<B extends ObjectWithPosition>{
 
     Loadable<B> parent;
     Deque<B> load;
-    int maxload;
+    int maxLoad;
 
     public Loader(Loadable<B> parent) {
         this.parent = parent;
         load = parent.getCurrentLoad();
-        maxload = parent.getMaxLoad();
+        maxLoad = parent.getMaxLoad();
     }
 
     private boolean loadingFeasible(B vehicle) {
@@ -17,7 +17,7 @@ public class Loader<B extends ObjectWithPosition>{
         double y = Math.abs(parent.getCurrentPos()[1] - vehicle.getCurrentPos()[1]);
         double distance = Math.sqrt(x*x+y*y);
         if (distance < 5) {
-        return true;
+            return true;
         }
         else {
             return false;
@@ -25,8 +25,8 @@ public class Loader<B extends ObjectWithPosition>{
     }
 
     public void load(B vehicle){
-        if (loadingFeasible(vehicle) && load.size() < maxload && load.contains(vehicle) == false) {
-            load.push(vehicle);
+        if (loadingFeasible(vehicle) && load.size() < parent.getMaxLoad() && load.contains(vehicle) == false) {
+            load.addLast(vehicle);
             vehicle.setCurrentPos(parent.getCurrentPos()[0], parent.getCurrentPos()[1]);
         }
     }

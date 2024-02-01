@@ -3,8 +3,8 @@ import java.util.*;
 public class Workshop<A extends Vehicle> extends ObjectWithPosition implements Loadable<A>{
 
     private int maxVehicles;
-    private Loader<A> loader = new Loader<A>(this);
     private Deque<A> loadedVehicles = new LinkedList<A>();     //OK av TA att implementera som stack
+    private Loader<A> loader = new Loader<A>(this);
 
     public Workshop(double x, double y, int maxVehicles) {
         setCurrentPos(x, y);
