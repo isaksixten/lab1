@@ -2,7 +2,7 @@ import java.awt.*;
 
 public class Scania extends Truck {
 
-    public Scania(int nrDoors, Color color, double enginePower, String modelName) {
+    public Scania() {
         super(2, Color.blue, 100, "Scania");
         setMaxPlatformDegree(70);
     }
