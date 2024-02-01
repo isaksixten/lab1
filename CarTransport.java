@@ -1,7 +1,6 @@
 import java.awt.*;
 import java.lang.Math;
 import java.util.*;
-import java.util.Stack;
 
 public class CarTransport extends Vehicle {
 
