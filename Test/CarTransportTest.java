@@ -23,7 +23,7 @@ public class CarTransportTest{
     }
     @Test
     public void loadingOnlyWithRampDown() {
-        TestVolvoFM9.raiseRamp();
+        TestVolvoFM9.raiseTilt();
         TestVolvoFM9.load(TestCar1);
         assertEquals(0, TestVolvoFM9.getCurrentLoad().size());
     }

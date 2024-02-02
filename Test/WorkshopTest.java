@@ -3,19 +3,15 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class WorkshopTest {
     private Workshop<Vehicle> CommonWorkshop;
-    private Workshop<Saab95> SaabWorkshop;
     private Saab95 TestSaab1;
     private Saab95 TestSaab2;
-    private Volvo240 TestVolvo;
     private Scania TestTruck;
 
     @BeforeEach
     public void setupTestCarTransport() {
         CommonWorkshop = new Workshop<Vehicle>(0, 0, 2);
-        SaabWorkshop = new Workshop<Saab95>(0, 0, 2);
         TestSaab1 = new Saab95();
         TestSaab2 = new Saab95();
-        TestVolvo = new Volvo240();
         TestTruck = new Scania();
     }
     @Test

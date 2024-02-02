@@ -2,7 +2,7 @@ import java.awt.*;
 import java.lang.Math;
 import java.util.*;
 
-public abstract class CarTransport extends Vehicle implements Loadable<Car>{ 
+public abstract class CarTransport extends Truck implements Loadable<Car>{ 
     
     //Car transport only accepts cars, as defined by Loadable<Car> and Loader<Car>.
 
@@ -23,6 +23,11 @@ public abstract class CarTransport extends Vehicle implements Loadable<Car>{
         return loadedVehicles;
     }
 
+    @Override
+    public boolean driveableTilt() {
+        return rampDown;
+    }
+
     public double[] getSizeLimits() {
         return sizeLimits;
     }
@@ -36,13 +41,14 @@ public abstract class CarTransport extends Vehicle implements Loadable<Car>{
         return maxLoadNum;
     }
 
-    public void raiseRamp() {
+    @Override
+    public void raiseTilt() {
         if (getCurrentSpeed() == 0){
             rampDown = false;
         }
     }
-
-    public void lowerRamp() {
+    @Override
+    public void lowerTilt() {
         if (getCurrentSpeed() == 0){
             rampDown = true;
         }
@@ -61,17 +67,12 @@ public abstract class CarTransport extends Vehicle implements Loadable<Car>{
         return null;
     }
 
-    @Override public void move(){ 
+    @Override 
+    public void move(){ 
         setCurrentPos(getCurrentPos()[0] + Math.cos(getDirection() * Math.PI / 180) * getCurrentSpeed(), getCurrentPos()[1] + Math.sin(getDirection() * Math.PI / 180) * getCurrentSpeed());
         for (Car x : loadedVehicles) { //Move all cars to the position of the car transport, and change their heading to match the car transport.
             x.setDirection(getDirection());
             x.setCurrentPos(getCurrentPos()[0], getCurrentPos()[1]);
-        }
-    }
-
-    public void startEngine(){
-        if (rampDown) {
-            currentSpeed = 0.1;
         }
     }
 }

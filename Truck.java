@@ -1,38 +1,21 @@
 import java.awt.*;
 
-abstract class Truck extends Vehicle {
-
-    private double platformDegree;
-    private double maxPlatformDegree;
-    private final double AngleTick = 10;
+abstract class Truck extends Vehicle implements TiltablePosterior{
 
     public Truck(int nrDoors, Color color, double enginePower, String modelName) {
         super(nrDoors, color, enginePower, modelName);
     }
 
-    public double getPlatformDegree() {
-        return platformDegree;
-    }
+    public abstract boolean driveableTilt();
 
-    protected void setMaxPlatformDegree(double angle) {
-        maxPlatformDegree = angle;
-    }
+    public abstract void raiseTilt();
 
-    public void raisePlatform() {
-        if (getCurrentSpeed() == 0){
-            platformDegree = Math.min(platformDegree + AngleTick, maxPlatformDegree);
-        }
-    }
-
-    public void lowerPlatform() {
-        if (getCurrentSpeed() == 0){
-            platformDegree = Math.max(platformDegree - AngleTick, 0);
-        }
-    }
+    public abstract void lowerTilt();
 
     public void startEngine(){
-        if (getPlatformDegree() == 0) {
+        if (driveableTilt()) {
             currentSpeed = 0.1;
         }
     }
+    
 }

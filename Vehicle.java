@@ -74,7 +74,7 @@ abstract class Vehicle extends ObjectWithPosition implements Moveable{
 
     abstract protected double speedFactor();
 
-    private void incrementSpeed(double amount){
+    protected void incrementSpeed(double amount){
         currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount,getEnginePower());
     }
 
