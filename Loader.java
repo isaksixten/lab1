@@ -33,13 +33,13 @@ public class Loader<B extends ObjectWithPosition>{ //loading utility class. Take
 
     public B unloadFirst(){
         B vehicle = load.removeFirst();
-        vehicle.setCurrentPos(parent.getCurrentPos()[0] + 5 * Math.cos(180), parent.getCurrentPos()[1] + 5 * Math.sin(180));
+        vehicle.setCurrentPos(parent.getCurrentPos()[0] + 5, parent.getCurrentPos()[1] + 5);
         return vehicle;
     }
 
     public B unloadLast() {
         B vehicle = load.removeLast();
-        vehicle.setCurrentPos(parent.getCurrentPos()[0] + 5 * Math.cos(180), parent.getCurrentPos()[1] + 5 * Math.sin(180));
+        vehicle.setCurrentPos(parent.getCurrentPos()[0] + 5, parent.getCurrentPos()[1] + 5);
         return vehicle;
     }
 }
