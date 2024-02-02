@@ -24,6 +24,12 @@ public class WorkshopTest {
         assertEquals(TestSaab1, CommonWorkshop.getCurrentLoad().pop());
     }
     @Test
+    public void unloadInCorrectOrder() {
+        CommonWorkshop.load(TestSaab1);
+        CommonWorkshop.load(TestSaab2);
+        assertEquals(TestSaab1, CommonWorkshop.unload());
+    }
+    @Test
     public void cantLoadMoreThanMax() {
         CommonWorkshop.load(TestSaab1);
         CommonWorkshop.load(TestSaab2);

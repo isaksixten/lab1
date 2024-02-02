@@ -1,12 +1,12 @@
 import java.util.Deque;
 
-public class Loader<B extends ObjectWithPosition>{
+public class Loader<B extends ObjectWithPosition>{ //loading utility class. Takes a generic type B.
 
     Loadable<B> parent;
     Deque<B> load;
     int maxLoad;
 
-    public Loader(Loadable<B> parent) {
+    public Loader(Loadable<B> parent) { //Parent needs to be a loadable object.
         this.parent = parent;
         load = parent.getCurrentLoad();
         maxLoad = parent.getMaxLoad();

@@ -2,7 +2,9 @@ import java.awt.*;
 import java.lang.Math;
 import java.util.*;
 
-public abstract class CarTransport extends Vehicle implements Loadable<Car>{
+public abstract class CarTransport extends Vehicle implements Loadable<Car>{ 
+    
+    //Car transport only accepts cars, as defined by Loadable<Car> and Loader<Car>.
 
     private int maxLoadNum;
     private boolean rampDown;
@@ -25,7 +27,7 @@ public abstract class CarTransport extends Vehicle implements Loadable<Car>{
         return sizeLimits;
     }
 
-    public void setSizeLimits(double length, double width) {
+    protected void setSizeLimits(double length, double width) {
         sizeLimits[0] = length;
         sizeLimits[1] = width;
     }
