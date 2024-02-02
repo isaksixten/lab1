@@ -11,6 +11,7 @@ public class CarTest {
     @BeforeEach
     public void setupTestsaab(){
         TestSaab = new Saab95();
+        TestSaab.startEngine();
     }
     @Test
     public void modelnametest() {
