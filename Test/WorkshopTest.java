@@ -1,8 +1,6 @@
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.Deque;
-
 public class WorkshopTest {
     private Workshop<Vehicle> CommonWorkshop;
     private Workshop<Saab95> SaabWorkshop;
