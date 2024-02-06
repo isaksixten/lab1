@@ -12,7 +12,6 @@ public class Workshop<A extends Vehicle> extends ObjectWithPosition implements L
     public Workshop(double x, double y, int maxVehicles) {
         setCurrentPos(x, y);
         this.maxVehicles = maxVehicles;
-
     };
 
     public Deque<A> getCurrentLoad() {

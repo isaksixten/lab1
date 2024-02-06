@@ -39,14 +39,10 @@ public class Scania extends Truck {
 
     @Override
     public void gas(double amount){
-        if (isEngineOn() && driveableTilt()) {
-            if(amount >= 0 && amount <= 1){
-                incrementSpeed(amount);
-            } else {
-                throw new IllegalArgumentException("invalid amount");
-            }
+        if (driveableTilt()) {;
+            super.gas(amount);
         } else {
-            throw new IllegalStateException("Engine needs to be turned on!");
+            throw new IllegalStateException("Platform needs to be in driving mode");
         }
     }
 }

@@ -66,10 +66,18 @@ public abstract class CarTransport extends Truck implements Loadable<Car>{
         } 
         return null;
     }
+    @Override
+    public void gas(double amount){
+        if (driveableTilt()) {;
+            super.gas(amount);
+        } else {
+            throw new IllegalStateException("Platform needs to be in driving mode");
+        }
+    }
 
     @Override 
     public void move(){ 
-        setCurrentPos(getCurrentPos()[0] + Math.cos(getDirection() * Math.PI / 180) * getCurrentSpeed(), getCurrentPos()[1] + Math.sin(getDirection() * Math.PI / 180) * getCurrentSpeed());
+        super.move();
         for (Car x : loadedVehicles) { //Move all cars to the position of the car transport, and change their heading to match the car transport.
             x.setDirection(getDirection());
             x.setCurrentPos(getCurrentPos()[0], getCurrentPos()[1]);
