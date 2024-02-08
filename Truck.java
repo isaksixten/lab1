@@ -17,5 +17,13 @@ abstract class Truck extends Vehicle implements TiltablePosterior{
             currentSpeed = 0.1;
         }
     }
+    @Override
+    public void gas(double amount){
+        if (driveableTilt()) {;
+            super.gas(amount);
+        } else {
+            throw new IllegalStateException("Platform needs to be in driving mode");
+        }
+    }
     
 }

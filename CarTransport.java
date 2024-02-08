@@ -1,5 +1,4 @@
 import java.awt.*;
-import java.lang.Math;
 import java.util.*;
 
 public abstract class CarTransport extends Truck implements Loadable<Car>{ 
@@ -65,14 +64,6 @@ public abstract class CarTransport extends Truck implements Loadable<Car>{
             return loader.unloadLast();
         } 
         return null;
-    }
-    @Override
-    public void gas(double amount){
-        if (driveableTilt()) {;
-            super.gas(amount);
-        } else {
-            throw new IllegalStateException("Platform needs to be in driving mode");
-        }
     }
 
     @Override 

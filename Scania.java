@@ -36,13 +36,4 @@ public class Scania extends Truck {
     protected double speedFactor() {
         return getEnginePower() * 0.01; 
     }
-
-    @Override
-    public void gas(double amount){
-        if (driveableTilt()) {;
-            super.gas(amount);
-        } else {
-            throw new IllegalStateException("Platform needs to be in driving mode");
-        }
-    }
 }
